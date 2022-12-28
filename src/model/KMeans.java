@@ -1,7 +1,13 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
+
+import javax.swing.SwingUtilities;
+
+import controller.FileProcessor.WriteToFile;
+import visualizer.ScatterPlot;
 
 public class KMeans {
 	
@@ -65,6 +71,7 @@ public class KMeans {
 			counter++;
 		}
 		System.out.println(bestCentroids + " " + best + " " + (counter));
+		WriteToFile.write(bestCentroids);
 	}
 	
 	public float SE(int clusterNumber) {
@@ -122,6 +129,30 @@ public class KMeans {
 	
 	public float euclideanDistance(ArrayList<Float> point1, ArrayList<Float> point2) {
 		return (float) Math.sqrt(Math.pow(point2.get(0)-point1.get(0), 2) + Math.pow(point2.get(1)-point1.get(1), 2));
+	}
+	
+	public void visualize() {
+		SwingUtilities.invokeLater(() -> {
+	    	ScatterPlot example = new ScatterPlot("k-means ScatterPlot", createDataset(), bestCentroids);
+	      example.setSize(800, 400);
+	      example.setLocationRelativeTo(null);
+	      example.setVisible(true);
+	    });
+	}
+	
+	public HashMap<String, ArrayList<ArrayList<Float>>> createDataset() {
+		HashMap<String, ArrayList<ArrayList<Float>>> data = new HashMap<>();
+		
+		for(int i = 0;i<M;i++) {
+			ArrayList<Integer> cluster = getCluster(i);
+			ArrayList<ArrayList<Float>> tmpPoints = new ArrayList<>();
+			for(int j = 0;j<cluster.size();j++) {
+				tmpPoints.add(points.get(cluster.get(j)));
+			}
+			data.put("C"+i, tmpPoints);
+		}
+		
+		return data;
 	}
 	
 	public int minIndex(float[] numbers) {

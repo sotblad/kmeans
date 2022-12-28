@@ -8,9 +8,7 @@ import controller.FileProcessor.WriteToFile;
 import controller.points.Points;
 
 public class NineClass {
-	public NineClass() {
-		
-	}
+	public NineClass() {}
 	
 	public static ArrayList<ArrayList<Float>> createPoints() {
 		Points points = new Points();

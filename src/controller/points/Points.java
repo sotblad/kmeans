@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Points {
-	public Points() {
-		
-	}
+	public Points() {}
 	
 	public ArrayList<ArrayList<Float>> generatePoints(int pointsNum, double minX, double maxX, double minY, double maxY) {
 		ArrayList<ArrayList<Float>> points = new ArrayList<>();
