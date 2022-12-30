@@ -2,7 +2,6 @@ package controller.classifications;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 
 import controller.FileProcessor.WriteToFile;
 import controller.points.Points;

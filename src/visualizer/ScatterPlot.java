@@ -20,10 +20,6 @@ import org.jfree.util.ShapeUtilities;
 public class ScatterPlot extends JFrame{
 	private static final long serialVersionUID = 1L;
 
-	public ScatterPlot() {
-
-	}
-
 	  public ScatterPlot(String title, HashMap<String, ArrayList<ArrayList<Float>>> data, ArrayList<ArrayList<Float>> centroids) {
 	    super(title);
 	    

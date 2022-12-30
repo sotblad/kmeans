@@ -1,17 +1,15 @@
-
-
 import java.util.ArrayList;
+import javax.swing.SwingUtilities;
 
 import controller.FileProcessor.ReadFromFile;
 import controller.classifications.NineClass;
 import model.KMeans;
+import visualizer.LinePlot;
 
 public class kmeans {
-	private static int M;
 	
 	public static void main(String[] args) {
 		ArrayList<ArrayList<Float>> points;
-		M = 9;
 		
 //		// generatePoints
 //		points = NineClass.createPoints();
@@ -19,10 +17,27 @@ public class kmeans {
 		// loadFromFile
 		points = ReadFromFile.parse("points.txt");
 		
-		KMeans kmeans = new KMeans(M, points, 700);
+		KMeans kmeans;
 		
-		kmeans.start();
+		int[] Ms = new int[]{3,6,9,12};
+		float[] WCSS = new float[Ms.length];
 		
-		kmeans.visualize();
+		for(int i = 0;i<Ms.length;i++) {
+			kmeans = new KMeans(Ms[i], points, 15);
+			
+			WCSS[i] = kmeans.start();
+			kmeans.visualize();
+		}
+		
+		visualizeError(Ms, WCSS);
+	}
+	
+	public static void visualizeError(int[] Ms, float[] WCSS) {
+		SwingUtilities.invokeLater(() -> {
+			LinePlot example = new LinePlot("Error-M LinePlot", Ms, WCSS);
+	      example.setSize(800, 400);
+	      example.setLocationRelativeTo(null);
+	      example.setVisible(true);
+	    });
 	}
 }

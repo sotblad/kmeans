@@ -6,7 +6,6 @@ import java.util.Random;
 
 import javax.swing.SwingUtilities;
 
-import controller.FileProcessor.WriteToFile;
 import visualizer.ScatterPlot;
 
 public class KMeans {
@@ -35,14 +34,12 @@ public class KMeans {
 		}
 	}
 	
-	public void start() {
+	public float start() {
 		initCentroids();
 		
-		int loops = 15;
 		float prevWCSS = 0;
-		int counter = 0;
 
-		while(loops != 0) {
+		while(maxIterations != 0) {
 			
 			clusters = new ArrayList<>();
 			for(int i = 0;i<points.size();i++) {
@@ -67,11 +64,11 @@ public class KMeans {
 			for(int i = 0;i<M;i++) {
 				calcNewCentroid(i);
 			}
-			loops--;
-			counter++;
+			maxIterations--;
 		}
-		System.out.println(bestCentroids + " " + best + " " + (counter));
-		WriteToFile.write(bestCentroids);
+		
+		this.centroids = bestCentroids;
+		return best;
 	}
 	
 	public float SE(int clusterNumber) {
@@ -133,7 +130,7 @@ public class KMeans {
 	
 	public void visualize() {
 		SwingUtilities.invokeLater(() -> {
-	    	ScatterPlot example = new ScatterPlot("k-means ScatterPlot", createDataset(), bestCentroids);
+	    	ScatterPlot example = new ScatterPlot("M=" + M + " k-means ScatterPlot", createDataset(), bestCentroids);
 	      example.setSize(800, 400);
 	      example.setLocationRelativeTo(null);
 	      example.setVisible(true);
