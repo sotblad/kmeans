@@ -51,15 +51,15 @@ public class KMeans {
 				clusters.add(minIndex(tmpDistance));
 			}
 			
-			if(WCSS() < best) {
-				best = WCSS();
+			float WCSS = WCSS();
+			
+			if(WCSS < best) {
+				best = WCSS;
 				bestCentroids = centroids;
 			}
 			
-			if(WCSS() == prevWCSS) break;
-			prevWCSS = WCSS();
-			
-			System.out.println("WCSS: " + WCSS());
+			if(WCSS == prevWCSS) break;
+			prevWCSS = WCSS;
 			
 			for(int i = 0;i<M;i++) {
 				calcNewCentroid(i);
