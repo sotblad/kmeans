@@ -12,10 +12,10 @@ public class kmeans {
 		ArrayList<ArrayList<Float>> points;
 		
 //		// generatePoints
-//		points = NineClass.createPoints();
+		points = NineClass.createPoints();
 		
 		// loadFromFile
-		points = ReadFromFile.parse("points.txt");
+//		points = ReadFromFile.parse("points.txt");
 		
 		KMeans kmeans;
 		

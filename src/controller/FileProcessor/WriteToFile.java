@@ -8,7 +8,7 @@ public class WriteToFile {
 	
 	public static void write(ArrayList<ArrayList<Float>> points) {
 		try {
-		      FileWriter myWriter = new FileWriter("centroids.txt");
+		      FileWriter myWriter = new FileWriter("points.txt");
 		      
 		      for(int i = 0;i<points.size();i++) {
 		    	  myWriter.write(points.get(i).get(0) + ", " + points.get(i).get(1) + "\n");
