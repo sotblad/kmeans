@@ -23,6 +23,7 @@ public class kmeans {
 		float[] WCSS = new float[Ms.length];
 		
 		for(int i = 0;i<Ms.length;i++) {
+			System.out.println("\nRunning KMeans for M=" + Ms[i]);
 			kmeans = new KMeans(Ms[i], points, 15);
 			
 			WCSS[i] = kmeans.start();

@@ -52,6 +52,7 @@ public class KMeans {
 			}
 			
 			float WCSS = WCSS();
+			System.out.println("WCSS= " + WCSS);
 			
 			if(WCSS < best) {
 				best = WCSS;
